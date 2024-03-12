@@ -1,10 +1,11 @@
-from src.functions import save_to_json, load_from_json
+from src.functions import save_to_json, load_from_json, create_vacancies
 from src.classes import HhVacancy
 
-# save_to_json(data)
-
-hh_api = HhVacancy()
-
-hh_vacancies = hh_api.get_vacancies('https://api.hh.ru/vacancies')
+# hh_api = HhVacancy()
+# hh_vacancies = hh_api.get_vacancies()
 # print(hh_vacancies)
-load_from_json()
+# save_to_json(hh_vacancies)
+
+data = load_from_json()
+# print(data)
+create_vacancies(data)
