@@ -48,10 +48,10 @@ class Vacancy:
 
         # Валидация данных
         if not self.__salary_from:
-            self.__salary_from = 'Зарплата "от" не указана'
+            self.__salary_from = 0
 
         if not self.__salary_to:
-            self.__salary_to = 'Зарплата "до" не указана'
+            self.__salary_to = 0
 
         if not self.salary_currency:
             self.salary_currency = "Нет информации о валюте з/п"
@@ -63,3 +63,34 @@ class Vacancy:
         return (
             f'Vacancy: {self.name}\n {self.requirement}\n {self.alternate_url}\n {self.__salary_from}\n {self.__salary_to}\n '
             f'{self.salary_currency}\n')
+
+
+class AbstractVacancy(ABC):
+    """
+    Абстрактный класс, который обязывает реализовать методы для добавления вакансий в файл,
+    получения данных из файла по указанным критериям и удаления информации о вакансиях.
+    """
+    @abstractmethod
+    def add_vacancies(self):
+        pass
+
+    @abstractmethod
+    def get_vacancies_criteria(self):
+        pass
+
+    @abstractmethod
+    def del_vacancies(self):
+        pass
+
+
+class SaveVacancies:
+    """
+    Класс для сохранения информации о вакансиях в JSON-файл
+    """
+    @staticmethod
+    def save_to_json(file_name: str, data: dict) -> None:
+        """
+        Сохранение вакансий в файл JSON
+        """
+        with open(file_name, "w", encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)

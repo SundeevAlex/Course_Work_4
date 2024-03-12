@@ -4,14 +4,6 @@ from src.classes import Vacancy
 
 VACANCY_FILE = 'data/vacancy.json'
 
- 
-def save_to_json(data: dict) -> None:
-    """
-    Сохранение вакансий в файл JSON
-    """
-    with open(VACANCY_FILE, "w", encoding='utf-8') as f:
-        json.dump(data, f, indent=2)
-
 
 def load_from_json() -> dict:
     """
