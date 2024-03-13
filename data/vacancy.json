@@ -8,19 +8,19 @@
     "salary_currency": "KZT"
   },
   {
-    "name": "Стажер-разработчик Python",
-    "requirement": "Не важен опыт, важно стремление к постоянному росту и мотивация. Rest/Fast/GraphQL Api + умение пользоваться док-ей, SQL...",
-    "alternate_url": "https://hh.ru/vacancy/94402102",
-    "salary_from": 2400,
-    "salary_to": 0,
-    "salary_currency": "BYR"
-  },
-  {
     "name": "Python-разработчик (Junior)",
     "requirement": "Уверенные знания Python. Коммерческий опыт разработки на Python. Уверенные знания SQL, опыт оптимизации sql-запросов. Навыки работы с Linux (командная...",
     "alternate_url": "https://hh.ru/vacancy/94675505",
     "salary_from": 0,
     "salary_to": 0,
     "salary_currency": "Нет информации о валюте з/п"
+  },
+  {
+    "name": "Стажер-разработчик Python",
+    "requirement": "Не важен опыт, важно стремление к постоянному росту и мотивация. Rest/Fast/GraphQL Api + умение пользоваться док-ей, SQL...",
+    "alternate_url": "https://hh.ru/vacancy/94402102",
+    "salary_from": 2400,
+    "salary_to": 0,
+    "salary_currency": "BYR"
   }
 ]

@@ -2,19 +2,6 @@ import json
 from src.classes import Vacancy
 
 
-VACANCY_FILE = 'data/vacancy.json'
-
-
-def load_from_json() -> dict:
-    """
-    Загрузка вакансий из файла JSON
-    """
-    with open(VACANCY_FILE, encoding='utf-8') as file:
-        content = file.read()
-        file_data = json.loads(content)
-    return file_data
-
-
 def create_vacancies(data):
     """
     Создание объектов красса вакансии

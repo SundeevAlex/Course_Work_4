@@ -2,6 +2,8 @@ import json
 from abc import ABC, abstractmethod
 import requests
 
+VACANCY_FILE = 'data/vacancy.json'
+
 
 class MainVacancyAPI(ABC):
     """
@@ -9,7 +11,7 @@ class MainVacancyAPI(ABC):
     """
 
     @abstractmethod
-    def get_vacancies(self):
+    def get_vacancies(self, vacancy_name, top_n):
         pass
 
 
@@ -17,16 +19,17 @@ class HhVacancy(MainVacancyAPI):
     """
     Класс для работы с API сервиса с вакансиями hh.ru
     """
-    url = 'https://api.hh.ru/vacancies'
-    vacancy_name = 'Python'
 
-    def get_vacancies(self) -> dict:
+    def __init__(self):
+        self.url = 'https://api.hh.ru/vacancies'
+
+    def get_vacancies(self, vacancy_name, top_n) -> dict:
         """
         Получение вакансий с сайта
         """
-        response = requests.get(HhVacancy.url, params={'text': HhVacancy.vacancy_name, 'per_page': 3})
+        response = requests.get(self.url, params={'text': vacancy_name, 'per_page': top_n})
         if response.status_code != 200:
-            raise ValueError(f'Ошибка доступа к сайту {HhVacancy.url}')
+            raise ValueError(f'Ошибка доступа к сайту {self.url}')
         else:
             response_data = json.loads(response.text)["items"]
         return response_data
@@ -38,7 +41,7 @@ class Vacancy:
     """
 
     def __init__(self, name: str, requirement: str, alternate_url: str, salary_from: float, salary_to: float,
-                 salary_currency: float):
+                 salary_currency: str):
         self.name = name
         self.requirement = requirement
         self.alternate_url = alternate_url
@@ -65,7 +68,10 @@ class Vacancy:
             f'{self.salary_currency}\n')
 
     @staticmethod
-    def cast_to_object_list(data):
+    def cast_to_object_list(data: list) -> list:
+        """
+        # Преобразование набора данных из JSON в список объектов
+        """
         vacancies_list = []
         for i in range(len(data)):
             el = {
@@ -79,14 +85,36 @@ class Vacancy:
             vacancies_list.append(el)
         return vacancies_list
 
+    @property
+    def salary_from(self):
+        return self.__salary_from
+
+    @property
+    def salary_to(self):
+        return self.__salary_to
+
+
+# class JSONLoader:
+#     """
+#     Класс для загрузки информации о вакансиях из JSON-файла
+#     """
+#
+#     @staticmethod
+#     def load_from_json() -> dict:
+#         with open(VACANCY_FILE, encoding='utf-8') as file:
+#             content = file.read()
+#             file_data = json.loads(content)
+#         return file_data
+
 
 class AbstractVacancy(ABC):
     """
     Абстрактный класс, который обязывает реализовать методы для добавления вакансий в файл,
     получения данных из файла по указанным критериям и удаления информации о вакансиях.
     """
+
     @abstractmethod
-    def add_vacancies(self):
+    def add_vacancy(self, data):
         pass
 
     @abstractmethod
@@ -94,27 +122,34 @@ class AbstractVacancy(ABC):
         pass
 
     @abstractmethod
-    def delete_vacancies(self):
+    def delete_vacancy(self):
         pass
 
 
-class WorkWithVacancies(AbstractVacancy):
+class JSONSaver(AbstractVacancy):
 
-    def add_vacancies(self):
-        pass
+    def __init__(self, data):
+        self.data = data
+        with open(VACANCY_FILE, "w", encoding='utf-8') as f:
+            json.dump(self.data, f, indent=2, ensure_ascii=False)
+
+    def add_vacancy(self, vacancy) -> dict:
+        """
+        Добавление вакансии
+        """
+        el = {
+            "name": vacancy.name,
+            "requirement": vacancy.requirement,
+            "alternate_url": vacancy.alternate_url,
+            "salary_from": vacancy.salary_from,
+            "salary_to": vacancy.salary_to,
+            "salary_currency": vacancy.salary_currency
+        }
+        self.data.append(el)
+        return self.data
 
     def get_vacancies_criteria(self):
         pass
 
-    def delete_vacancies(self):
+    def delete_vacancy(self):
         pass
-
-
-class JSONSaver(Vacancy):
-    """
-    Класс для сохранения информации о вакансиях в JSON-файл
-    """
-    @staticmethod
-    def save_to_json(file_name: str, data) -> None:
-        with open(file_name, "w", encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
