@@ -24,7 +24,7 @@ class HhVacancy(MainVacancyAPI):
         """
         Получение вакансий с сайта
         """
-        response = requests.get(HhVacancy.url, params={'text': HhVacancy.vacancy_name})
+        response = requests.get(HhVacancy.url, params={'text': HhVacancy.vacancy_name, 'per_page': 3})
         if response.status_code != 200:
             raise ValueError(f'Ошибка доступа к сайту {HhVacancy.url}')
         else:
@@ -64,6 +64,21 @@ class Vacancy:
             f'Vacancy: {self.name}\n {self.requirement}\n {self.alternate_url}\n {self.__salary_from}\n {self.__salary_to}\n '
             f'{self.salary_currency}\n')
 
+    @staticmethod
+    def cast_to_object_list(data):
+        vacancies_list = []
+        for i in range(len(data)):
+            el = {
+                "name": data[i].name,
+                "requirement": data[i].requirement,
+                "alternate_url": data[i].alternate_url,
+                "salary_from": data[i].__salary_from,
+                "salary_to": data[i].__salary_to,
+                "salary_currency": data[i].salary_currency
+            }
+            vacancies_list.append(el)
+        return vacancies_list
+
 
 class AbstractVacancy(ABC):
     """
@@ -79,18 +94,27 @@ class AbstractVacancy(ABC):
         pass
 
     @abstractmethod
-    def del_vacancies(self):
+    def delete_vacancies(self):
         pass
 
 
-class SaveVacancies:
+class WorkWithVacancies(AbstractVacancy):
+
+    def add_vacancies(self):
+        pass
+
+    def get_vacancies_criteria(self):
+        pass
+
+    def delete_vacancies(self):
+        pass
+
+
+class JSONSaver(Vacancy):
     """
     Класс для сохранения информации о вакансиях в JSON-файл
     """
     @staticmethod
-    def save_to_json(file_name: str, data: dict) -> None:
-        """
-        Сохранение вакансий в файл JSON
-        """
+    def save_to_json(file_name: str, data) -> None:
         with open(file_name, "w", encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)

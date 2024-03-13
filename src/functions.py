@@ -34,6 +34,4 @@ def create_vacancies(data):
             salary_to = None
             currency = None
         vacancy.append(Vacancy(el['name'], requirement, el['alternate_url'], salary_from, salary_to, currency))
-
-    for el in vacancy:
-        print(el)
+    return vacancy
