@@ -57,7 +57,7 @@ class Vacancy:
             self.__salary_to = 0
 
         if not self.salary_currency:
-            self.salary_currency = "Нет информации о валюте з/п"
+            self.salary_currency = "нет информации о валюте з/п"
 
     def __lt__(self, other):
         return self.__salary_from < other.__salary_from

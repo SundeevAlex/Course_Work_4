@@ -1,4 +1,5 @@
-from src.functions import create_vacancies, filter_vacancies
+from src.functions import create_vacancies, filter_vacancies, print_results
+from src.functions import get_vacancies_by_salary, sort_vacancies
 from src.classes import HhVacancy, JSONSaver, Vacancy
 
 
@@ -10,23 +11,21 @@ def user_interaction():
     search_query = 'Python'
     top_n = 2
     filter_words = ''.lower().split()
-    salary_range = '0-150000'
+    salary_range = ''
 
     hh_api = HhVacancy()
     hh_vacancies = hh_api.get_vacancies(search_query, top_n)
     vacancies = create_vacancies(hh_vacancies)
-
     vacancies_list = Vacancy.cast_to_object_list(vacancies)
 
     # v1 = Vacancy('Стажер', 'Не важен опыт.', 'https://mail.ru', 50000, 80000, 'RUR')
     json_saver = JSONSaver(vacancies_list)
     # json_saver.add_vacancy(v1)
-    # print(vacancies_list)
 
     filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
-    print(filtered_vacancies)
-
-
+    ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
+    sorted_vacancies = sort_vacancies(ranged_vacancies)
+    print_results(sorted_vacancies)
     # data = load_from_json()
 
 

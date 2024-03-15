@@ -1,18 +1,18 @@
 [
   {
-    "name": "Стажер-разработчик Python",
-    "requirement": "Не важен опыт, важно стремление к постоянному росту и мотивация. Rest/Fast/GraphQL Api + умение пользоваться док-ей, SQL...",
-    "alternate_url": "https://hh.ru/vacancy/94402102",
-    "salary_from": 2400,
-    "salary_to": 0,
-    "salary_currency": "BYR"
+    "name": "Frontend-разработчик",
+    "requirement": "Отличное знание CSS3 и HTML5 (дизайнеры есть, нужно только верстать по макетам). Опыт коммерческой разработки на JavaScript и...",
+    "alternate_url": "https://hh.ru/vacancy/94675402",
+    "salary_from": 170000,
+    "salary_to": 210000,
+    "salary_currency": "RUR"
   },
   {
-    "name": "QA специалист",
-    "requirement": "Опыт работы в рамках процесса автоматического тестирования. Опыт работы с Jira. Опыт работы с Bash и Python. Опыт работы с...",
-    "alternate_url": "https://hh.ru/vacancy/94780921",
-    "salary_from": 0,
+    "name": "Python Backend Developer (Django)",
+    "requirement": "Технологический стек: Python, Django, PostgreSQL, REST API, Docker, Git. Ответственный и творческий подход к решению задач. Приветствуется опыт трекинга задач...",
+    "alternate_url": "https://hh.ru/vacancy/93633836",
+    "salary_from": 50000,
     "salary_to": 0,
-    "salary_currency": "Нет информации о валюте з/п"
+    "salary_currency": "RUR"
   }
 ]
