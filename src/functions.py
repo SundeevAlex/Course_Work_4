@@ -22,3 +22,14 @@ def create_vacancies(data):
             currency = None
         vacancy.append(Vacancy(el['name'], requirement, el['alternate_url'], salary_from, salary_to, currency))
     return vacancy
+
+
+def filter_vacancies(data: list, words: list) -> list:
+    """
+    Фильтрация вакансий по ключевым словам
+    """
+    data_filter = [vacancy for vacancy in data if
+                   any(key in vacancy['requirement'].lower() for key in words)]
+    if not words:
+        data_filter = data
+    return data_filter

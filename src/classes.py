@@ -86,11 +86,11 @@ class Vacancy:
         return vacancies_list
 
     @property
-    def salary_from(self):
+    def salary_from(self) -> float:
         return self.__salary_from
 
     @property
-    def salary_to(self):
+    def salary_to(self) -> float:
         return self.__salary_to
 
 
@@ -114,7 +114,7 @@ class AbstractVacancy(ABC):
     """
 
     @abstractmethod
-    def add_vacancy(self, data):
+    def add_vacancy(self, data) -> dict:
         pass
 
     @abstractmethod
@@ -127,8 +127,11 @@ class AbstractVacancy(ABC):
 
 
 class JSONSaver(AbstractVacancy):
+    """
+    Класс для сохранения информации о вакансиях в JSON-файл
+    """
 
-    def __init__(self, data):
+    def __init__(self, data) -> None:
         self.data = data
         with open(VACANCY_FILE, "w", encoding='utf-8') as f:
             json.dump(self.data, f, indent=2, ensure_ascii=False)
@@ -137,15 +140,10 @@ class JSONSaver(AbstractVacancy):
         """
         Добавление вакансии
         """
-        el = {
-            "name": vacancy.name,
-            "requirement": vacancy.requirement,
-            "alternate_url": vacancy.alternate_url,
-            "salary_from": vacancy.salary_from,
-            "salary_to": vacancy.salary_to,
-            "salary_currency": vacancy.salary_currency
-        }
-        self.data.append(el)
+        self.data.append(
+            {"name": vacancy.name, "requirement": vacancy.requirement, "alternate_url": vacancy.alternate_url,
+             "salary_from": vacancy.salary_from, "salary_to": vacancy.salary_to,
+             "salary_currency": vacancy.salary_currency})
         return self.data
 
     def get_vacancies_criteria(self):

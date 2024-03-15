@@ -1,26 +1,18 @@
 [
   {
-    "name": "Программист Junior Back-end Front-end",
-    "requirement": "Опыт программирования на любом языке. Обучение Django Python Javascript по ходу дела.",
-    "alternate_url": "https://hh.ru/vacancy/94647811",
-    "salary_from": 120000,
-    "salary_to": 200000,
-    "salary_currency": "KZT"
-  },
-  {
-    "name": "Python-разработчик (Junior)",
-    "requirement": "Уверенные знания Python. Коммерческий опыт разработки на Python. Уверенные знания SQL, опыт оптимизации sql-запросов. Навыки работы с Linux (командная...",
-    "alternate_url": "https://hh.ru/vacancy/94675505",
-    "salary_from": 0,
-    "salary_to": 0,
-    "salary_currency": "Нет информации о валюте з/п"
-  },
-  {
     "name": "Стажер-разработчик Python",
     "requirement": "Не важен опыт, важно стремление к постоянному росту и мотивация. Rest/Fast/GraphQL Api + умение пользоваться док-ей, SQL...",
     "alternate_url": "https://hh.ru/vacancy/94402102",
     "salary_from": 2400,
     "salary_to": 0,
     "salary_currency": "BYR"
+  },
+  {
+    "name": "QA специалист",
+    "requirement": "Опыт работы в рамках процесса автоматического тестирования. Опыт работы с Jira. Опыт работы с Bash и Python. Опыт работы с...",
+    "alternate_url": "https://hh.ru/vacancy/94780921",
+    "salary_from": 0,
+    "salary_to": 0,
+    "salary_currency": "Нет информации о валюте з/п"
   }
 ]
