@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Frontend-разработчик",
+    "requirement": "Отличное знание CSS3 и HTML5 (дизайнеры есть, нужно только верстать по макетам). Опыт коммерческой разработки на JavaScript и...",
+    "alternate_url": "https://hh.ru/vacancy/94675402",
+    "salary_from": 170000,
+    "salary_to": 210000,
+    "salary_currency": "RUR"
+  },
+  {
+    "name": "Python-разработчик (Junior)",
+    "requirement": "Уверенные знания Python. Коммерческий опыт разработки на Python. Уверенные знания SQL, опыт оптимизации sql-запросов. Навыки работы с Linux (командная...",
+    "alternate_url": "https://hh.ru/vacancy/94675505",
+    "salary_from": 0,
+    "salary_to": 0,
+    "salary_currency": "нет информации о валюте з/п"
+  },
+  {
+    "name": "Junior Frontend разработчик",
+    "requirement": "Умение верстать по Figma и по заданному примеру сайта. Опыт работы с адаптивной вёрсткой и простыми анимациями. Знание React и...",
+    "alternate_url": "https://hh.ru/vacancy/94450348",
+    "salary_from": 40000,
+    "salary_to": 60000,
+    "salary_currency": "RUR"
+  },
+  {
+    "name": "Intern DevOps",
+    "requirement": "Понимание принципов информационной безопасности и защиты данныхБудет плюсом опыт с Bash/Python, SQL. Нелишними окажутся и личные качества: Умение работать...",
+    "alternate_url": "https://hh.ru/vacancy/94546584",
+    "salary_from": 0,
+    "salary_to": 0,
+    "salary_currency": "нет информации о валюте з/п"
+  }
+]
