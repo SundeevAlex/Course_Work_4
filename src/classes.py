@@ -94,17 +94,17 @@ class Vacancy:
         return self.__salary_to
 
 
-# class JSONLoader:
-#     """
-#     Класс для загрузки информации о вакансиях из JSON-файла
-#     """
-#
-#     @staticmethod
-#     def load_from_json() -> dict:
-#         with open(VACANCY_FILE, encoding='utf-8') as file:
-#             content = file.read()
-#             file_data = json.loads(content)
-#         return file_data
+class JSONLoader:
+    """
+    Класс для загрузки информации о вакансиях из JSON-файла
+    """
+
+    @staticmethod
+    def load_from_json() -> dict:
+        with open(VACANCY_FILE, encoding='utf-8') as file:
+            content = file.read()
+            file_data = json.loads(content)
+        return file_data
 
 
 class AbstractVacancy(ABC):
@@ -118,11 +118,11 @@ class AbstractVacancy(ABC):
         pass
 
     @abstractmethod
-    def get_vacancies_criteria(self):
+    def get_vacancies_criteria(self, vacancies: list) -> list:
         pass
 
     @abstractmethod
-    def delete_vacancy(self):
+    def delete_vacancy(self, vacancies: list, vacancy_to_del: str) -> list:
         pass
 
 
@@ -146,8 +146,20 @@ class JSONSaver(AbstractVacancy):
              "salary_currency": vacancy.salary_currency})
         return self.data
 
-    def get_vacancies_criteria(self):
-        pass
+    def get_vacancies_criteria(self, vacancies: list) -> list:
+        """
+        Получить набор вакансий по определенным критериям
+        """
+        sorted_vacancies = sorted(vacancies, key=lambda vacancy: vacancy.get('salary_from', 0), reverse=False)
+        return sorted_vacancies
 
-    def delete_vacancy(self):
-        pass
+    def delete_vacancy(self, vacancies: list, vacancy_to_del: str) -> list:
+        """
+        Удаление вакансии
+        """
+        i = 0
+        for el in vacancies:
+            if el['name'] == vacancy_to_del:
+                vacancies.pop(i)
+            i += 1
+        return vacancies

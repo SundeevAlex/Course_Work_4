@@ -23,6 +23,17 @@ def create_vacancies(data):
     return vacancy
 
 
+def create_vacancies_from_file(data):
+    """
+    Создание объектов красса вакансии
+    """
+    vacancy = []
+    for el in data:
+        vacancy.append(Vacancy(el['name'], el['requirement'], el['alternate_url'], el['salary_from'],
+                               el['salary_to'], el['salary_currency']))
+    return vacancy
+
+
 def filter_vacancies(vacancies: list, words: list) -> list:
     """
     Фильтрация вакансий по ключевым словам
