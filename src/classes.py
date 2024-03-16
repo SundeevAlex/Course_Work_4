@@ -64,8 +64,8 @@ class Vacancy:
 
     def __repr__(self):
         return (
-            f'Vacancy: {self.name}\n {self.requirement}\n {self.alternate_url}\n {self.__salary_from}\n {self.__salary_to}\n '
-            f'{self.salary_currency}\n')
+            f'Vacancy: {self.name}\n {self.requirement}\n {self.alternate_url}\n {self.__salary_from}\n'
+            f'{self.__salary_to}\n {self.salary_currency}\n')
 
     @staticmethod
     def cast_to_object_list(data: list) -> list:

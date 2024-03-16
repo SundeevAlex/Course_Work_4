@@ -1,4 +1,3 @@
-import json
 from src.classes import Vacancy
 
 
@@ -8,11 +7,11 @@ def create_vacancies(data):
     """
     vacancy = []
     for el in data:
+        requirement = el["snippet"]["requirement"]
+        if '<highlighttext>' in requirement:
+            requirement = requirement.replace('<highlighttext>', '')
+            requirement = requirement.replace('</highlighttext>', '')
         try:
-            requirement = el["snippet"]["requirement"]
-            if '<highlighttext>' in requirement:
-                requirement = requirement.replace('<highlighttext>', '')
-                requirement = requirement.replace('</highlighttext>', '')
             salary_from = el['salary']['from']
             salary_to = el['salary']['to']
             currency = el['salary']['currency']
